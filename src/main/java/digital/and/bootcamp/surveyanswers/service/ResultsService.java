@@ -4,10 +4,12 @@ import digital.and.bootcamp.surveyanswers.models.AnswerRequest;
 import digital.and.bootcamp.surveyanswers.models.PersonResponses;
 import digital.and.bootcamp.surveyanswers.models.Question;
 import digital.and.bootcamp.surveyanswers.models.Survey;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Slf4j
 @Service
 public class ResultsService {
     private final Map<String, Survey> surveyMap = new HashMap<>();
@@ -27,6 +29,9 @@ public class ResultsService {
     public List<Question> getSurveyResults(String surveyId) {
         Map<String, Question> questionMap = new HashMap<>();
         Survey survey = surveyMap.get(surveyId);
+        if(Objects.isNull(survey)) {
+            return Collections.emptyList();
+        }
         survey.getResponses().values().stream().map(PersonResponses::getQuestionAndAnswer).forEach(personAnswers -> {
             personAnswers.forEach((question, answer) -> {
                 if (questionMap.containsKey(question)) {
