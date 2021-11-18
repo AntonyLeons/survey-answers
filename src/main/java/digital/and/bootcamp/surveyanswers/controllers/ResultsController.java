@@ -16,15 +16,13 @@ public class ResultsController {
     @Autowired
     ResultsService resultsService;
 
-    @PostMapping
-    @RequestMapping(path = "/submit", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/submit", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> submitAnswer(@RequestBody AnswerRequest answerRequest) {
         resultsService.updateResponse(answerRequest);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    @RequestMapping(path = "/{surveyId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{surveyId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Question> getResults(@PathVariable String surveyId) {
         return resultsService.getSurveyResults(surveyId);
     }
