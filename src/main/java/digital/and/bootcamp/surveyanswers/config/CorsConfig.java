@@ -15,7 +15,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry
                         .addMapping("/**")
-                        .allowedOrigins("http://localhost:3000", "https://andsurvey.netlify.app/");
+                        .allowedOrigins("http://localhost:3000", "https://andsurvey.netlify.app/", "https://surveytool-slack-integration.herokuapp.com/");
             }
         };
     }
