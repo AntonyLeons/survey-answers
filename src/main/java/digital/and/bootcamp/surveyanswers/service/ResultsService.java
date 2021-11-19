@@ -38,6 +38,7 @@ public class ResultsService {
                     Question questionAndAnswer = questionMap.get(question);
                     Map<String, Integer> answers = questionAndAnswer.getAnswers();
                     answers.compute(answer, (answerKey, count) -> Objects.isNull(count) ? 1 : count + 1);
+                    questionAndAnswer.setTotal(answers.values().stream().mapToInt(Integer::intValue).sum());
                     questionAndAnswer.setAnswers(answers);
                 } else {
                     Map<String, Integer> answers = new HashMap<>();

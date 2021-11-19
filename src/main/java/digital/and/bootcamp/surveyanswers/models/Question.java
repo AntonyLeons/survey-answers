@@ -14,4 +14,5 @@ import java.util.Map;
 public class Question {
     private String question;
     private Map<String, Integer> answers;
+    private int total = 0;
 }
